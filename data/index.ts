@@ -152,3 +152,35 @@ export const socialMedia = [
   { id: 2, img: "/twit.svg" },
   { id: 3, img: "/link.svg" },
 ];
+
+//Dados detalhados da trajetória acadêmica e profissional com citações personalizadas
+export const trajectory = [
+  {
+    id: 1,
+    date: "2022 - 2024",
+    title: "Técnico em Informática para Internet - IF Goiano",
+    description: "Concluí o curso Técnico em Informática para Internet no Campus Trindade, com foco em Java, JavaScript, HTML, CSS e SQL.",
+    link: null,
+  },
+  {
+    id: 2,
+    date: "2025 - Atualmente",
+    title: "Bacharelado em Sistemas de Informação - UFG",
+    description: "Consolidação da base em lógica de programação com C e aprofundamento em desenvolvimento web.",
+    link: null,
+  },
+  {
+    id: 3,
+    date: "2025 - 2026",
+    title: "Residência em TIC - Brisa/UFG & Go Ledger",
+    description: "Atuação em projeto real, desenvolvendo um software web fullstack que ultiliza AI para categorizar/classificar documentos.",
+    link: "https://github.com/Rafaasj07/Categorizar-Documentos-AI",
+  },
+  {
+    id: 4,
+    date: "2025 - Atualmente",
+    title: "Desenvolvedor Frontend - Aplus Dicas",
+    description: "Atuação no sistema APlus, uma plataforma de ensino e educação.",
+    link: "https://aplusplatform.com/",
+  },
+];

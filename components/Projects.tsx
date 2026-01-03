@@ -3,9 +3,9 @@ import React from 'react'
 import { PinContainer } from './ui/3dPin'
 import { FaLocationArrow } from 'react-icons/fa'
 
-const RecentProjects = () => {
+const Projects = () => {
   return (
-    <div className="py-20" id="projetos">
+    <div className="pt-20 pb-10" id="projetos">
       <h1 className="heading">
         Meus{' '}
         <span className="text-purple">Projetos</span>
@@ -69,4 +69,4 @@ const RecentProjects = () => {
   )
 }
 
-export default RecentProjects
+export default Projects
