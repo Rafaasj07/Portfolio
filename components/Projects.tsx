@@ -2,6 +2,8 @@ import { projects } from '@/data'
 import React from 'react'
 import { PinContainer } from './ui/3dPin'
 import { FaLocationArrow } from 'react-icons/fa'
+import Image from 'next/image'
+import { prefixPath } from '@/lib/utils'
 
 const Projects = () => {
   return (
@@ -20,16 +22,18 @@ const Projects = () => {
             <PinContainer title={title} href={link}>
               <div className="relative flex items-center justify-center sm:w-142.5 w-[85vw] overflow-hidden h-[25vh] sm:h-[40vh] mb-6 md:mb-10">
                 <div className="relative w-full h-full overflow-hidden rounded-2xl md:rounded-3xl bg-[#13162d]">
-                  <img
-                    src="./bg.png"
+                  <Image
+                    src={prefixPath("/bg.png")}
                     alt="background"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
-                <img
-                  src={img}
+                <Image
+                  src={prefixPath(img)}
                   alt={title}
-                  className="z-10 absolute bottom-0 w-full h-full object-contain px-4"
+                  fill
+                  className="z-10 absolute bottom-0 object-contain px-4"
                 />
               </div>
 
@@ -51,9 +55,11 @@ const Projects = () => {
                         transform: `translateX(-${5 * index * 2}px)`
                       }}
                     >
-                      <img
-                        src={icon}
+                      <Image
+                        src={prefixPath(icon)}
                         alt="tech icon"
+                        width={40}
+                        height={40}
                         className="p-2"
                       />
                     </div>
@@ -75,4 +81,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Projects;
