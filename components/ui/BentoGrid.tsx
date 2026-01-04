@@ -1,14 +1,16 @@
 "use client";
 
+import { useState } from "react";
+import { IoCopyOutline } from "react-icons/io5";
+import Lottie from "react-lottie";
 import { cn } from "@/lib/utils";
 import { BackgroundGradientAnimation } from "./GradientBg";
 import { GlobeDemo } from "./GridGlobe";
-import Lottie from "react-lottie";
-import { useState } from "react";
-import animationData from '@/data/confetti.json'
+import animationData from "@/data/confetti.json";
 import MagicButton from "./MagicButton";
-import { IoCopyOutline } from "react-icons/io5";
+import { FaLocationArrow, FaRegFilePdf } from "react-icons/fa";
 
+// Container principal que organiza os cards em um layout de grid responsivo
 export const BentoGrid = ({
   className,
   children,
@@ -20,7 +22,7 @@ export const BentoGrid = ({
     <div
       className={cn(
         "grid grid-cols-1 md:grid-cols-6 lg:grid-cols-5 md:grid-row-7 gap-4 lg:gap-8 mx-auto",
-        className,
+        className
       )}
     >
       {children}
@@ -28,6 +30,7 @@ export const BentoGrid = ({
   );
 };
 
+/** Componente que renderiza cada card individual, tratando conteúdos específicos por ID */
 export const BentoGridItem = ({
   className,
   title,
@@ -41,25 +44,24 @@ export const BentoGridItem = ({
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
-  header?: React.ReactNode;
-  icon?: React.ReactNode;
-  id: number;
-  img: string;
-  imgClassName: string;
-  titleClassName: string;
-  spareImg: string;
+  id?: number;
+  img?: string;
+  imgClassName?: string;
+  titleClassName?: string;
+  spareImg?: string;
 }) => {
   const [copied, setCopied] = useState(false);
 
+  // Copia o endereço de e-mail para a área de transferência do usuário
   const handleCopy = () => {
-    navigator.clipboard.writeText('rafael.s.januario@gmail.com')
+    navigator.clipboard.writeText("rafael.silva.santos.dev@gmail.com");
     setCopied(true);
-  }
+  };
 
   return (
     <div
       className={cn(
-        "row-span-1 relative overflow-hidden rounded-3xl group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4 border border-white/10",
+        "row-span-1 relative overflow-hidden rounded-3xl border border-white/10 group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
         className
       )}
       style={{
@@ -73,24 +75,22 @@ export const BentoGridItem = ({
             <img
               src={img}
               alt={img}
-              className={cn(imgClassName, "object-cover object-center")}
+              className={cn(imgClassName, "object-cover object-center ")}
             />
           )}
         </div>
-
         <div className={`absolute right-0 -bottom-5 ${id === 5 && "w-full opacity-80"}`}>
           {spareImg && (
             <img
               src={spareImg}
               alt={spareImg}
-              className={"object-cover object-center w-full h-full"}
+              className="object-cover object-center w-full h-full"
             />
           )}
         </div>
-
         {id === 6 && (
           <BackgroundGradientAnimation>
-            <div className="absolute z-50 flex items-center justify-center text-white font-bold" />
+            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
           </BackgroundGradientAnimation>
         )}
 
@@ -100,13 +100,29 @@ export const BentoGridItem = ({
             "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
           )}
         >
-          <div className="font-sans font-extralight text-[#c1c2d3] text-sm md:text-xs lg:text-base z-10">
+          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-white-200 z-10">
             {description}
           </div>
-
-          <div className="font-sans font-bold text-lg lg:text-3xl max-w-96 z-10">
+          <div className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}>
             {title}
           </div>
+
+          {id === 1 && (
+            <div className="flex mt-10 justify-center">
+              <a
+                href="https://drive.google.com/file/d/1AM3kHfvH-H36bnYdBu-a-lx7Xs1pOhn4/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MagicButton
+                  title="Ver Currículo"
+                  icon={<FaRegFilePdf />}
+                  position="right"
+                  otherClasses="!bg-[#161a31]"
+                />
+              </a>
+            </div>
+          )}
 
           {id === 2 && <GlobeDemo />}
 
@@ -130,26 +146,43 @@ export const BentoGridItem = ({
               </div>
             </div>
           )}
+          
+          {id === 5 && (
+            <div className="mt-5 relative">
+              <a
+                href="https://github.com/Rafaasj07/Categorizar-Documentos-AI.git"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MagicButton
+                  title="Saiba mais"
+                  icon={<FaLocationArrow />}
+                  position="right"
+                  otherClasses="!bg-[#161a31]"
+                />
+              </a>
+            </div>
+          )}
 
           {id === 6 && (
             <div className="mt-5 relative">
               <div className={`absolute -bottom-5 right-0`}>
-                <Lottie options={{
-                  loop: copied,
-                  autoplay: copied,
-                  animationData,
-                  rendererSettings: {
-                    preserveAspectRatio: 'xMidYmid slice'
-                  }
-                }} />
+                <Lottie
+                  options={{
+                    loop: copied,
+                    autoplay: copied,
+                    animationData: animationData,
+                    rendererSettings: { preserveAspectRatio: "xMidYMid slice" },
+                  }}
+                />
               </div>
 
               <MagicButton
-                title={copied ? 'E-mail copiado' : 'Copiar meu e-mail'}
+                title={copied ? "E-mail copiado!" : "Copiar meu e-mail"}
                 icon={<IoCopyOutline />}
                 position="left"
-                otherClasses="!bg-[#161a31]"
                 handleClick={handleCopy}
+                otherClasses="!bg-[#161a31]"
               />
             </div>
           )}
